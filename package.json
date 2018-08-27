@@ -12,7 +12,7 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "",
+  "author": "Pichayuth Kittisriswai",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^4.0.1",
