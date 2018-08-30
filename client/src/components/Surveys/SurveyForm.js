@@ -1,40 +1,32 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 import SurveyField from './SurveyField';
+
+const FIELDS = [
+  { label: 'Survey Title', name: 'title' },
+  { label: 'Survey Line', name: 'subject' },
+  { label: 'Email Body', name: 'body' },
+  { label: 'Recipient List', name: 'emails' },
+];
 
 class SurveyForm extends Component {
   state = {};
 
   renderField() {
-    return (
-      <div>
+    return _.map(FIELDS, (field) => {
+      return (
         <Field
-          type="text"
-          name="title"
+          key={field.name}
           component={SurveyField}
-          label="Survey title"
-        />
-        <Field
           type="text"
-          name="subject"
-          component={SurveyField}
-          label="Subject line"
+          label={field.label}
+          name={field.name}
         />
-        <Field
-          type="text"
-          name="body"
-          component={SurveyField}
-          label="Email body"
-        />
-        <Field
-          type="text"
-          name="emails"
-          component={SurveyField}
-          label="Recipient list"
-        />
-      </div>
-    );
+      );
+    });
   }
 
   render() {
@@ -44,7 +36,13 @@ class SurveyForm extends Component {
           onSubmit={this.props.handleSubmit((values) => console.log(values))}
         >
           {this.renderField()}
-          <button type="submit">Submit</button>
+          <Link to="/surveys" className="red btn-flat white-text">
+            Cancel
+          </Link>
+          <button className="teal btn-flat right white-text" type="submit">
+            Next
+            <i className="material-icons right">done</i>
+          </button>
         </form>
       </div>
     );
