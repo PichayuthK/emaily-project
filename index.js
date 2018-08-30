@@ -4,14 +4,14 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
+require('./models/User');
+require('./models/Survey');
+require('./services/passport');
+
 const authRoutes = require('./routes/authRoutes');
 const bullingRoutes = require('./routes/billingRoutes');
 const surveyRoutes = require('./routes/surveyRoutes');
 const keys = require('./config/keys');
-
-require('./models/User');
-require('./models/Survey');
-require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
 
